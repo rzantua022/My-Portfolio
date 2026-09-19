@@ -3,6 +3,7 @@
 ------------------------------------------------------- */
 :root {
     --bg: #0b1220;
+    --bg-rgb: 11, 18, 32;
     --panel: #111a2c;
     --panel-raised: #16213a;
     --line: #26364f;
@@ -23,6 +24,23 @@
     --radius-m: 10px;
 
     --content-w: 1120px;
+}
+
+[data-theme="light"] {
+    --bg: #f4f6fb;
+    --bg-rgb: 244, 246, 251;
+    --panel: #ffffff;
+    --panel-raised: #eef1f7;
+    --line: #d7dee8;
+    --line-soft: #e6eaf1;
+
+    --text: #131b28;
+    --text-muted: #47536a;
+    --text-faint: #7c87a0;
+
+    --copper: #b6703f;
+    --copper-bright: #935429;
+    --teal: #2f7d74;
 }
 
 * {
@@ -55,6 +73,7 @@ body {
         var(--bg);
     background-attachment: fixed;
     color: var(--text);
+    transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 ::selection {
@@ -82,6 +101,25 @@ h1, h2, h3 {
     letter-spacing: -0.01em;
 }
 
+/* Scroll-in reveal — only active once JS confirms it can drive it,
+   so content stays visible by default without JavaScript. */
+.js .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.js .reveal.in-view {
+    opacity: 1;
+    transform: none;
+}
+
+.js .skills-grid .reveal:nth-child(2) { transition-delay: 0.08s; }
+.js .skills-grid .reveal:nth-child(3) { transition-delay: 0.16s; }
+.js .project-grid .reveal:nth-child(2) { transition-delay: 0.1s; }
+.js .certification-container .reveal:nth-child(2) { transition-delay: 0.08s; }
+.js .certification-container .reveal:nth-child(3) { transition-delay: 0.16s; }
+
 /* -------------------------------------------------------
    Header / nav
 ------------------------------------------------------- */
@@ -89,7 +127,7 @@ header {
     position: sticky;
     top: 0;
     z-index: 1000;
-    background: rgba(11, 18, 32, 0.86);
+    background: rgba(var(--bg-rgb), 0.86);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--line);
 }
@@ -110,10 +148,21 @@ nav {
     font-weight: 600;
     text-decoration: none;
     color: var(--text);
+    transition: opacity 0.15s ease;
+}
+
+.logo:hover {
+    opacity: 0.75;
 }
 
 .logo span {
     color: var(--copper);
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
 
 nav ul {
@@ -137,24 +186,61 @@ nav ul a:hover {
     border-color: var(--copper);
 }
 
+.theme-toggle,
 .nav-toggle {
-    display: none;
-    flex-direction: column;
+    display: inline-flex;
+    align-items: center;
     justify-content: center;
-    gap: 5px;
     width: 34px;
     height: 34px;
     background: none;
     border: 1px solid var(--line);
     border-radius: var(--radius-s);
+    color: var(--text);
     cursor: pointer;
+    transition: border-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
+}
+
+.theme-toggle:hover,
+.nav-toggle:hover {
+    border-color: var(--copper);
+    color: var(--copper-bright);
+    transform: translateY(-1px);
+}
+
+.theme-toggle svg {
+    width: 18px;
+    height: 18px;
+}
+
+.theme-toggle .icon-moon {
+    display: none;
+}
+
+[data-theme="light"] .theme-toggle .icon-sun {
+    display: none;
+}
+
+[data-theme="light"] .theme-toggle .icon-moon {
+    display: block;
+}
+
+.nav-toggle {
+    flex-direction: column;
+    gap: 5px;
+    display: none;
 }
 
 .nav-toggle span {
     display: block;
     height: 2px;
+    width: 20px;
     background: var(--text);
-    margin: 0 7px;
+    transition: background 0.15s ease;
+}
+
+.nav-toggle:hover span {
+    background: var(--copper-bright);
 }
 
 /* -------------------------------------------------------
@@ -432,6 +518,11 @@ section {
     background: var(--panel);
     border: 1px solid var(--line);
     border-radius: var(--radius-m);
+    transition: border-color 0.15s ease;
+}
+
+.skill-group:hover {
+    border-color: var(--copper);
 }
 
 .skill-group h3 {
@@ -480,6 +571,11 @@ section {
     flex-direction: column;
     background: var(--panel);
     border: 1px solid var(--line);
+    transition: border-color 0.15s ease;
+}
+
+.certification-card:hover {
+    border-color: var(--copper);
 }
 
 .certification-card + .certification-card {
@@ -760,6 +856,227 @@ footer {
 }
 
 /* -------------------------------------------------------
+   Page loader
+------------------------------------------------------- */
+.page-loader {
+    position: fixed;
+    inset: 0;
+    z-index: 5000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    background: var(--bg);
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.page-loader.loaded {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.loader-mark {
+    font-family: var(--font-mono);
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.loader-mark span {
+    color: var(--copper);
+}
+
+.loader-bar {
+    width: 140px;
+    height: 3px;
+    background: var(--line);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.loader-bar span {
+    display: block;
+    height: 100%;
+    width: 30%;
+    background: linear-gradient(90deg, var(--copper), var(--teal));
+    animation: loaderSlide 1s ease-in-out infinite;
+}
+
+@keyframes loaderSlide {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(350%); }
+}
+
+/* -------------------------------------------------------
+   Scroll progress bar
+------------------------------------------------------- */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    width: 0%;
+    background: linear-gradient(90deg, var(--copper), var(--teal));
+    z-index: 3000;
+    transition: width 0.1s ease-out;
+}
+
+/* -------------------------------------------------------
+   Back to top
+------------------------------------------------------- */
+.back-to-top {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    background: var(--panel);
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 8px 20px -8px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transform: translateY(12px);
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease, border-color 0.15s ease, color 0.15s ease;
+    z-index: 900;
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.back-to-top:hover {
+    border-color: var(--copper);
+    color: var(--copper-bright);
+    transform: translateY(-2px);
+}
+
+.back-to-top svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* -------------------------------------------------------
+   Floating contact button
+------------------------------------------------------- */
+.fab-contact {
+    position: fixed;
+    left: 24px;
+    bottom: 24px;
+    z-index: 900;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    opacity: 0;
+    transform: translateY(12px);
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.fab-contact.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.fab-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 14px;
+    opacity: 0;
+    transform: translateY(8px);
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.fab-menu.open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.fab-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: var(--panel);
+    color: var(--text);
+    text-decoration: none;
+    font-size: 14px;
+    white-space: nowrap;
+    box-shadow: 0 8px 20px -10px rgba(0, 0, 0, 0.5);
+    transition: border-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
+}
+
+.fab-item:hover {
+    border-color: var(--copper);
+    color: var(--copper-bright);
+    transform: translateX(3px);
+}
+
+.fab-item svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}
+
+.fab-toggle {
+    position: relative;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: none;
+    background: var(--copper);
+    color: #16110b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 10px 24px -8px rgba(201, 134, 90, 0.6);
+    transition: background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.fab-toggle:hover {
+    background: var(--copper-bright);
+    transform: translateY(-2px) scale(1.03);
+}
+
+.fab-toggle svg {
+    width: 22px;
+    height: 22px;
+    position: absolute;
+    transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.fab-toggle .icon-close {
+    opacity: 0;
+    transform: rotate(-45deg);
+}
+
+.fab-toggle.open .icon-plus {
+    opacity: 0;
+    transform: rotate(45deg);
+}
+
+.fab-toggle.open .icon-close {
+    opacity: 1;
+    transform: rotate(0deg);
+}
+
+/* -------------------------------------------------------
    Responsive
 ------------------------------------------------------- */
 @media (max-width: 860px) {
@@ -834,6 +1151,10 @@ footer {
         display: flex;
     }
 
+    .nav-right {
+        gap: 14px;
+    }
+
     #hero {
         grid-template-columns: 1fr;
         text-align: left;
@@ -853,4 +1174,87 @@ footer {
     section {
         padding: 64px 20px;
     }
+
+    .back-to-top {
+        right: 16px;
+        bottom: 16px;
+        width: 42px;
+        height: 42px;
+    }
+
+    .fab-contact {
+        left: 16px;
+        bottom: 16px;
+    }
+
+    .fab-toggle {
+        width: 48px;
+        height: 48px;
+    }
+
+    .fab-item span {
+        font-size: 13px;
+    }
+}
+
+/* -------------------------------------------------------
+   Theme-switch polish
+   Placed last so it wins the cascade over the component
+   rules above, giving a smooth fade instead of a hard snap
+   when the theme toggle changes CSS variable values.
+------------------------------------------------------- */
+header,
+.skill-group,
+.about-facts,
+.project-card,
+.certification-card,
+.contact-panel,
+.cert-thumb,
+.tag,
+.hero-frame-inner,
+.hero-frame-tag,
+.fab-item,
+.back-to-top {
+    transition-property: background-color, border-color, color, box-shadow, opacity, transform;
+    transition-duration: 0.25s;
+    transition-timing-function: ease;
+}
+
+/* -------------------------------------------------------
+   404 page
+------------------------------------------------------- */
+.error-section {
+    min-height: 68vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.error-code {
+    font-size: clamp(72px, 14vw, 160px);
+    line-height: 1;
+    color: var(--text);
+    margin: 10px 0 14px;
+    animation: rise 0.7s ease both;
+}
+
+.error-message {
+    color: var(--text-muted);
+    font-size: 17px;
+    max-width: 52ch;
+    margin-bottom: 8px;
+    animation: rise 0.7s 0.08s ease both;
+}
+
+.error-actions {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-top: 26px;
+    animation: rise 0.7s 0.16s ease both;
+}
+
+.error-actions .btn-resume {
+    margin-top: 0;
 }
