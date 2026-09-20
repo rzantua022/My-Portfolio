@@ -1,0 +1,135 @@
+PROFILE
+
+Full name: Ranel Andrew Zantua
+Professional title or area of study: Information Technology student
+Short introduction: Ranel Andrew Zantua is an Information Technology student interested in software development, databases, and networking. His portfolio describes an interest in understanding systems from the hardware they run on, to the networks they use, to the code that makes them useful.
+General location: Not provided
+Professional interests: Software development, databases, networking, web apps, software development and systems
+Last updated: Not provided
+
+PUBLIC CONTACT INFORMATION
+
+Professional email: ranel.zantua28@gmail.com
+LinkedIn: Not provided
+GitHub or other professional profile: https://github.com/rzantua022
+Portfolio URL: Not provided
+Preferred contact method: Email
+
+PROJECT
+
+Project name: Rock Paper Scissors
+Context: Not provided
+Date or period: Not provided
+Status: Not provided
+Purpose: A browser-based Rock Paper Scissors game.
+Personal contribution: Not provided
+Main features: Browser-based Rock Paper Scissors game.
+Technologies: HTML, CSS, JavaScript
+Outcome or recognition: Not provided
+Public demo: https://rzantua022.github.io/rock-paper-scissors/
+Public source code: Not publicly available
+Limitations: The portfolio does not provide project dates, project status, personal contribution details, or a source-code URL for this project.
+
+PROJECT
+
+Project name: General Knowledge Quiz
+Context: Not provided
+Date or period: Not provided
+Status: Not provided
+Purpose: A 10-question multiple-choice quiz game.
+Personal contribution: Not provided
+Main features: 10-question multiple-choice quiz.
+Technologies: HTML, CSS, JavaScript
+Outcome or recognition: Not provided
+Public demo: Not provided
+Public source code: https://github.com/rzantua022/10-questions-multiple-choices-game
+Limitations: The portfolio does not provide project dates, project status, personal contribution details, or a public demo URL for this project.
+
+SKILLS
+
+Programming languages: C#, Java, SQL, HTML, CSS, JavaScript
+Frameworks and libraries: Not provided
+Databases and platforms: Not provided
+Design and productivity tools: Not provided
+Other skills: Computer systems servicing, Network setup, Networking
+Currently learning: Not provided
+
+TRAINING, CERTIFICATIONS, AND AWARDS
+
+Title: Introduction to Computer Systems Servicing
+Issuer or organizer: TESDA Online Program
+Date: June 3, 2026
+Type: Certification
+Verification URL: Not provided
+Expiry or status: Not provided
+
+TRAINING, CERTIFICATIONS, AND AWARDS
+
+Title: Installing and Configuring Computer Systems
+Issuer or organizer: TESDA Online Program
+Date: June 11, 2026
+Type: Certification
+Verification URL: Not provided
+Expiry or status: Not provided
+
+TRAINING, CERTIFICATIONS, AND AWARDS
+
+Title: Setting Up Computer Networks
+Issuer or organizer: TESDA Online Program
+Date: August 26, 2026
+Type: Certification
+Verification URL: Not provided
+Expiry or status: Not provided
+
+AVAILABILITY AND SERVICES
+
+Services offered: Not confirmed
+Availability: Contact owner to confirm
+Published rates: Contact owner for a quote
+Booking process: Contact the owner by email at ranel.zantua28@gmail.com
+
+FREQUENTLY ASKED QUESTIONS
+
+Question: What does Ranel study?
+Approved answer: Ranel is an Information Technology student.
+
+Question: What areas is Ranel interested in?
+Approved answer: His portfolio lists software development, databases, networking, and web apps among his interests.
+
+Question: What programming and web technologies are listed in the portfolio?
+Approved answer: The portfolio lists C#, Java, SQL, HTML, CSS, and JavaScript.
+
+Question: What certifications are listed?
+Approved answer: The portfolio lists three TESDA Online Program certifications: Introduction to Computer Systems Servicing, Installing and Configuring Computer Systems, and Setting Up Computer Networks.
+
+Question: How can I contact Ranel?
+Approved answer: The portfolio provides ranel.zantua28@gmail.com as a public contact email.
+
+UNKNOWN OR UNCONFIRMED DETAILS
+
+- General location
+- LinkedIn profile
+- Published portfolio URL
+- School or institution
+- Degree or exact academic program name beyond "Information Technology student"
+- Education dates and graduation status
+- Employment or other experience
+- Project dates and project status
+- Individual project contributions
+- Project outcomes or recognition
+- Frameworks and libraries
+- Databases and platforms
+- Design and productivity tools
+- Current learning topics
+- Public certification verification URLs
+- Certification expiry/status
+- Specific services offered
+- Current availability
+- Published rates
+- Leadership or community roles
+- Pronouns
+- Any facts not explicitly supported by the portfolio repository
+
+SOURCE NOTES
+
+Source used: My-Portfolio repository (rzantua022/My-Portfolio), main branch. Facts were taken from the portfolio's index.html and its referenced public assets. No details were added from outside the repository. Where the portfolio did not provide a detail, "Not provided" or "Not confirmed" is used.
