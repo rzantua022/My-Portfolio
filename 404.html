@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<script>document.documentElement.classList.add('js');</script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Page not found — Ranel Zantua</title>
+    <title>Page not found | Ranel Zantua</title>
     <meta name="description" content="The page you're looking for doesn't exist. Head back to Ranel Andrew Zantua's portfolio.">
     <meta name="robots" content="noindex, follow">
     <link rel="canonical" href="https://rzantua022.github.io/My-Portfolio/">
@@ -24,13 +24,27 @@
 
 <body>
 
+    <a href="#main-content" class="skip-link">Skip to content</a>
+
     <header>
         <nav>
             <a href="/My-Portfolio/#top" class="logo">Ranel<span>.</span></a>
+
+            <div class="nav-right">
+                <button class="icon-btn" id="themeToggle" aria-label="Toggle dark or light theme">
+                    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="12" cy="12" r="4"></circle>
+                        <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+                    </svg>
+                    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"></path>
+                    </svg>
+                </button>
+            </div>
         </nav>
     </header>
 
-    <main>
+    <main id="main-content">
         <section class="not-found">
             <div class="not-found-grid" aria-hidden="true"></div>
 
@@ -39,7 +53,7 @@
             <h1 class="not-found-code">Lost<span>.</span>signal</h1>
 
             <p class="not-found-lede">
-                This page doesn't exist — it was moved, renamed, or never built.
+                This page doesn't exist. It may have been moved, renamed, or never built.
                 Let's get you back to something that does.
             </p>
 
@@ -52,7 +66,13 @@
 
     <footer>
         <p>&copy; 2026 Ranel Andrew Zantua. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="/My-Portfolio/privacy.html">Privacy Policy</a>
+            <a href="/My-Portfolio/terms.html">Terms of Service</a>
+        </div>
     </footer>
+
+    <script src="script.js"></script>
 
 </body>
 
